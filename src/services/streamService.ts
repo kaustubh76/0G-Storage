@@ -2,7 +2,7 @@ import { Readable, Writable } from 'stream';
 import { ZgFile, Indexer } from '@0glabs/0g-ts-sdk';
 import { ethers } from 'ethers';
 import { env } from '../config/environment';
-import { StorageError } from '../types/errors';
+import { StorageError } from '../types/error';
 
 export class StreamService {
   private indexer: Indexer;

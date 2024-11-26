@@ -1,7 +1,7 @@
 import { ZgFile, Indexer, getFlowContract } from '@0glabs/0g-ts-sdk';
 import { ethers } from 'ethers';
 import { env } from '../config/environment';
-import { StorageError } from '../types/errors';
+import { StorageError } from '../types/error';
 import { FileUploadResult, StorageOptions } from '../types/storage';
 
 export class StorageService {
@@ -47,7 +47,7 @@ export class StorageService {
       await file.close();
 
       return {
-        rootHash: tree.rootHash(),
+        rootHash: tree ? tree.rootHash() ?? (() => { throw new StorageError('Root hash is null'); })() : (() => { throw new StorageError('Tree is null'); })(),
         transactionHash: tx?.hash
       };
     } catch (error) {

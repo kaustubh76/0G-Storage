@@ -1,4 +1,4 @@
-import { Batcher, KvClient } from '@0glabs/0g-ts-sdk';
+import { Batcher, KvClient, getFlowContract } from '@0glabs/0g-ts-sdk';
 import { ethers } from 'ethers';
 import { env } from '../config/environment';
 import { StorageError } from '../types/errors';
@@ -12,7 +12,7 @@ export class KvService {
     this.provider = new ethers.JsonRpcProvider(env.EVM_RPC_URL);
     this.signer = new ethers.Wallet(env.PRIVATE_KEY, this.provider);
     this.kvClient = new KvClient(env.KV_CLIENT_URL);
-  }
+ }
 
   async setValue(
     streamId: string, 
